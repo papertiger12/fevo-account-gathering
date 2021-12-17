@@ -8,7 +8,7 @@ import { Account, Person, NormalizedData } from "./types";
  */
 export const merge = (accounts: Account[]): Person[] | undefined => {
   const normalizedData = normalizeAccountsByEmail(accounts);
-  log("normalized data", normalizedData);
+  log("normalized data:", normalizedData);
 
   return Object.keys(normalizedData).reduce<Person[]>((people, email) => {
     const myEmails: string[] = [];
@@ -17,7 +17,7 @@ export const merge = (accounts: Account[]): Person[] | undefined => {
       normalizedData[email],
       myEmails
     );
-    log("linked account emails", linkedEmails);
+    log("linked account emails (", email, ") -", linkedEmails);
 
     if (!getPersonRecord(people, linkedEmails)) {
       // no record found, create a new person record for this set of emails
@@ -25,7 +25,7 @@ export const merge = (accounts: Account[]): Person[] | undefined => {
         normalizedData,
         linkedEmails
       );
-      log("new person record", newPerson);
+      log("new person record:", newPerson);
 
       people.push(newPerson);
     }
