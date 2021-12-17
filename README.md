@@ -18,5 +18,7 @@ yarn | npm install
 - `--debug` - show debug logs as the data is traversed
 
 ```
-yarn | npm test [--debug]
+yarn test [--debug]
+
+npm test [--debug=true]
 ```
